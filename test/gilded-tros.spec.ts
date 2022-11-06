@@ -1,9 +1,57 @@
 import {Item} from '../src/item';
 import {GildedTros} from '../src/gilded-tros';
 
-describe('GildedTrosTest', () => {
-    const items: Item[] = [new Item('foo', 0, 0)];
-    const app: GildedTros = new GildedTros(items);
-    app.updateQuality();
-    expect(app.items[0].name).toEqual('fixme');
+function createAndUpdateItem(name: String, sellIn: Number, quality: Number) {
+
+}
+
+describe('GoodWine', () => {
+    it('QualityGoesUpByOne', () => {
+
+    });
+    it('PastSellIn_QualityGoesUpByTwo', () => {
+
+    });
+    it('QualityNeverMoreThan50', () => {
+
+    })
+});
+
+describe('BackstagePasses', () => {
+    it('QualityGoesUpByOne_MoreThan10DaysUntilSellIn', () => {
+
+    });
+    it('QualityGoesUpByTwo_MoreThan5DaysUntilSellIn', () => {
+
+    });
+    it('QualityGoesUpByTwo_LessThan6DaysUntilSellIn', () => {
+
+    });
+    it('QualityNeverMoreThan50', () => {
+
+    });
+    it('QualityDropsToZeroAfterSellIn', () => {
+
+    });
+});
+
+describe('B-DAWG-Keychain', () => {
+    it('NeverDecreasesInQuality', () => {
+
+    });
+    it('PastSellIn_NeverDecreasesInQuality', () => {
+
+    })
+});
+
+describe('RegularItem', () => {
+    it('SellInAndQualityLower', () => {
+
+    });
+    it('ItemPastSellIn_QualityDegradesTwiceAsFast', () => {
+
+    });
+    it('QualityNeverLowerThanZero', () => {
+
+    })
 });
