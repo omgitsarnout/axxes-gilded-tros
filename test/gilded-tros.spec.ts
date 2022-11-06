@@ -89,18 +89,32 @@ describe('RegularItem', () => {
 });
 
 describe('Smelly Items', () => {
-    it('DegradesInQualityWithTwo_DuplicateCode', () => {
+    it('DegradesInQualityByTwo_DuplicateCode', () => {
         const app = createAndUpdateItem('Duplicate Code', 10, 50);
         expect(app.items[0].quality).toEqual(48);
     });
-    it('DegradesInQualityWithTwo_LongMethods', () => {
+    it('DegradesInQualityByTwo_LongMethods', () => {
         const app = createAndUpdateItem('Long Methods', 10, 50);
         expect(app.items[0].quality).toEqual(48);
     });
-    it('DegradesInQualityWithTwo_UglyVariableNames', () => {
+    it('DegradesInQualityByTwo_UglyVariableNames', () => {
         const app = createAndUpdateItem('Ugly Variable Names', 10, 50);
         expect(app.items[0].quality).toEqual(48);
     });
+
+    it('DegradesInQualityByFour_AfterSellIn_DuplicateCode', () => {
+        const app = createAndUpdateItem('Duplicate Code', -1, 50);
+        expect(app.items[0].quality).toEqual(46);
+    });
+    it('DegradesInQualityByFour_AfterSellIn_LongMethods', () => {
+        const app = createAndUpdateItem('Long Methods', -1, 50);
+        expect(app.items[0].quality).toEqual(46);
+    });
+    it('DegradesInQualityByFour_AfterSellIn_UglyVariableNames', () => {
+        const app = createAndUpdateItem('Ugly Variable Names', -1, 50);
+        expect(app.items[0].quality).toEqual(46);
+    });
+
     it('QualityNeverLowerThanZero_DuplicateCode', () => {
         const app = createAndUpdateItem('Duplicate Code', -1, 0);
         expect(app.items[0].quality).toEqual(0);
