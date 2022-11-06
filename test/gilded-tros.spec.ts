@@ -87,3 +87,30 @@ describe('RegularItem', () => {
         expect(app.items[0].quality).toEqual(0);
     })
 });
+
+describe('Smelly Items', () => {
+    it('DegradesInQualityWithTwo_DuplicateCode', () => {
+        const app = createAndUpdateItem('Duplicate Code', 10, 50);
+        expect(app.items[0].quality).toEqual(48);
+    });
+    it('DegradesInQualityWithTwo_LongMethods', () => {
+        const app = createAndUpdateItem('Long Methods', 10, 50);
+        expect(app.items[0].quality).toEqual(48);
+    });
+    it('DegradesInQualityWithTwo_UglyVariableNames', () => {
+        const app = createAndUpdateItem('Ugly Variable Names', 10, 50);
+        expect(app.items[0].quality).toEqual(48);
+    });
+    it('QualityNeverLowerThanZero_DuplicateCode', () => {
+        const app = createAndUpdateItem('Duplicate Code', -1, 0);
+        expect(app.items[0].quality).toEqual(0);
+    })
+    it('QualityNeverLowerThanZero_LongMethods', () => {
+        const app = createAndUpdateItem('Long Methods', -1, 0);
+        expect(app.items[0].quality).toEqual(0);
+    })
+    it('QualityNeverLowerThanZero_UglyVariableNames', () => {
+        const app = createAndUpdateItem('Ugly Variable Names', -1, 0);
+        expect(app.items[0].quality).toEqual(0);
+    })
+})
