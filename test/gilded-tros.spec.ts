@@ -67,6 +67,10 @@ describe('B-DAWG-Keychain', () => {
         const app = createAndUpdateItem('B-DAWG Keychain', -1, 20);
         expect(app.items[0].quality).toEqual(20);
     })
+    it('NeverHasToBeSold', () => {
+        const app = createAndUpdateItem('B-DAWG Keychain', 10, 20);
+        expect(app.items[0].quality).toEqual(20);
+    })
 });
 
 describe('RegularItem', () => {
