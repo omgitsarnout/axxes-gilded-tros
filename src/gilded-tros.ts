@@ -1,11 +1,13 @@
 import {Item} from './item';
-import It = jest.It;
 
 const ItemTypesEnum = {
     WINE: "Good Wine",
     PASS_RE_FACTOR: "Backstage passes for Re:Factor",
     PASS_HAXX: "Backstage passes for HAXX",
-    BDAWG: "B-DAWG Keychain"
+    BDAWG: "B-DAWG Keychain",
+    DUPLICATE_CODE: "Duplicate Code",
+    LONG_METHODS: "Long Methods",
+    UGLY_VARIABLE_NAMES: "Ugly Variable Names"
 }
 
 function updateRegular(item: Item) {
@@ -58,19 +60,47 @@ function updateGoodWine(item: Item) {
     }
 }
 
+function updateSmellyItem(item: Item) {
+    if (item.quality > 1) {
+        item.quality -= 2;
+    } else {
+        item.quality = 0;
+    }
+
+    item.sellIn--;
+
+    if (item.sellIn < 0) {
+        if (item.quality > 1) {
+            item.quality -= 2;
+        } else {
+            item.quality = 0;
+        }
+    }
+}
+
 export class GildedTros {
     constructor(public items: Array<Item>) {}
 
     public updateQuality(): void {
         this.items.forEach((item: Item) => {
-            if (item.name === ItemTypesEnum.WINE)
-                updateGoodWine(item);
-            else if (item.name === ItemTypesEnum.BDAWG)
-                return;
-            else if (item.name === ItemTypesEnum.PASS_HAXX || item.name === ItemTypesEnum.PASS_RE_FACTOR)
-                updatePass(item);
-            else
-                updateRegular(item);
+            switch (item.name) {
+                case ItemTypesEnum.WINE:
+                    updateGoodWine(item);
+                    break;
+                case ItemTypesEnum.PASS_HAXX:
+                case ItemTypesEnum.PASS_RE_FACTOR:
+                    updatePass(item);
+                    break;
+                case ItemTypesEnum.BDAWG:
+                    break;
+                case ItemTypesEnum.DUPLICATE_CODE:
+                case ItemTypesEnum.LONG_METHODS:
+                case ItemTypesEnum.UGLY_VARIABLE_NAMES:
+                    updateSmellyItem(item);
+                    break;
+                default:
+                    updateRegular(item);
+            }
         });
     }
 }
